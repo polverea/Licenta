@@ -1,0 +1,17 @@
+.contact-container {
+  width: 800px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+
+  .contact-form {
+    width: 50vw;
+
+    .message {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
