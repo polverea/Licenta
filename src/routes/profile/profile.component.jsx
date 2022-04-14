@@ -1,60 +1,90 @@
 import FormInput from "../../components/form-input/form-input.component";
-import { useContext, useState, useRef} from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../contexts/user.context";
 import CustomButton from "../../components/custom-button/custom-button.component";
-import { updateYourEmail, updateYourPassword } from "../../firebase/firebase.utils";
+import { doc, updateDoc } from "firebase/firestore";
 
-const Profile = () => { 
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
-    const [loading, setLoading] = useState(false)
-    const { currentUser } = useContext(UserContext);
+import {
+  db,
+  updateYourEmail,
+  updateYourPassword,
+} from "../../firebase/firebase.utils";
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            alert("Passwords do not match")
+const Profile = () => {
+  const [user, setUser] = useState({
+    displayName: "",
+    oldDisplayName: "",
+    email: "",
+    oldEmail: "",
+  });
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (currentUser)
+      setUser({
+        ...user,
+        oldDisplayName: currentUser.displayName,
+        oldEmail: currentUser.email,
+      });
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (user.displayName !== user.oldDisplayName) {
+      setCurrentUser({ ...currentUser, user });
+
+      console.log(currentUser.displayName);
+
+      const ref = doc(db, "users", currentUser.uid);
+      await updateDoc(ref, {
+        displayName: user.displayName,
+      });
     }
 
-    const promises = []
-    setLoading(true)
+    if (user.email !== user.oldEmail) {
+      updateYourEmail(user.email);
+      setCurrentUser({ ...currentUser, user });
 
-    if (emailRef.current.value !== currentUser.email) {
-        updateYourEmail(emailRef.current.value)
+      console.log(currentUser.email);
+
+      const ref = doc(db, "users", currentUser.uid);
+      await updateDoc(ref, {
+        email: user.email,
+      });
     }
-    
-    if (passwordRef.current.value) {
-        updateYourPassword(passwordRef.current.value)
-    }
+  };
 
-    Promise.all(promises)
-      .then(() => {
-        console.log("ceva")
-      })
-      .catch(() => {
-        alert("Failed to update account")
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }
-   
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-            {/* <FormInput label="Display Name" type="text"  name="displayName"  defaultValue={"currentUser.displayName"} />
-            <FormInput label="Email" type="email"  name="displayName" ref={emailRef} defaultValue={"currentUser.email"} /> 
-            <FormInput label="Password" type="password" required ref={passwordRef} name="password" placeholder="parola" />
-            <FormInput label="Confirm Password" type="password" ref={passwordConfirmRef} name="confirmPassword" placeholder="parola"/> */}
-            <input type="text" ref={emailRef} defaultValue={"currentUser.email"} ></input>
-            <input type="password" ref={passwordRef} defaultValue={"currentUser.email"} ></input>
-            <input type="password" ref={passwordConfirmRef} defaultValue={"currentUser.email"} ></input>
-            <CustomButton type="submit"> Update </CustomButton>
-            </form>
-        </div>
-    )
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
-}
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          label="Display Name"
+          type="text"
+          name="displayName"
+          value={user.displayName}
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Email"
+          type="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
+        />
+        {console.log(user)}
+        <CustomButton type="submit"> Update </CustomButton>
+      </form>
+    </div>
+  );
+};
 
 export default Profile;
