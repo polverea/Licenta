@@ -1,10 +1,10 @@
 import React from "react";
+import Authentication from "../../routes/authentication/authentication.component";
 
-const SignInAndSignUpComponent = () => {
-    return (
-        <div>
-            <SignIn />
-            <SignUp />
-        </div>
-    )
-}
+export const SignInAndSignUpPage = () => {
+  return (
+    <div>
+      <Authentication />
+    </div>
+  );
+};

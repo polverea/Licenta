@@ -1,0 +1,15 @@
+.groups-container {
+  width: 90vw;
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .create-group {
+    padding: 20px;
+  }
+
+  .join-group {
+    padding: 20px;
+  }
+}

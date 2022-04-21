@@ -8,7 +8,7 @@ import {
   signOut,
   onAuthStateChanged,
   updateEmail,
-  updatePassword,
+  updateProfile,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -43,7 +43,6 @@ export const createUserDocumentFromAuth = async (
 
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -80,10 +79,10 @@ export const onAuthStateChangedListener = (callback) => {
   onAuthStateChanged(auth, callback);
 };
 
-export const updateYourPassword = async (password) => {
-  return await updatePassword(auth.currentUser, password);
-};
-
 export const updateYourEmail = async (email) => {
   return await updateEmail(auth.currentUser, email);
+};
+
+export const updateYourDisplayName = async (displayName) => {
+  return await updateProfile(auth.currentUser, { displayName });
 };
