@@ -1,28 +1,25 @@
-import {
-  getDoc,
-  setDoc,
-  addDoc,
-  collection,
-  query,
-  getDocs,
-  where,
-} from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { useContext, useState } from "react";
 import GenerateRandomCode from "react-random-code-generator";
+import { GroupContext } from "../../contexts/group-context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
+import GroupItem from "../group-item/group-item.component";
 import "./new-group.styles.scss";
 
 const NewGroup = () => {
   const { currentUser } = useContext(UserContext);
-  const [group, setGroup] = useState({
+  const { currentGroups, setCurrentGroups } = useContext(GroupContext);
+  const defaultFilds = {
     owner: "",
     code: "",
     name: "",
     members: [],
-  });
+  };
+
+  const [group, setGroup] = useState(defaultFilds);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -49,11 +46,14 @@ const NewGroup = () => {
     } catch (e) {
       console.log("error", e.message);
     }
+    setCurrentGroups(...group);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createGroup();
+    setGroup(defaultFilds);
+    alert("grupul a fost creat cu succes");
   };
 
   return (

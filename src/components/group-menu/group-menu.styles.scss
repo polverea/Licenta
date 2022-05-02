@@ -1,0 +1,29 @@
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 3vw;
+  padding-left: 5vw;
+  padding-right: 15vw;
+
+  .menu {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 4vw;
+
+    .group-info {
+      font-size: small;
+      text-align: center;
+    }
+  }
+
+  .content {
+    width: 40vw;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+  }
+}

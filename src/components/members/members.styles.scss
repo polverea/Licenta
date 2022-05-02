@@ -1,0 +1,17 @@
+.members {
+  min-width: 165px;
+  width: 100%;
+  letter-spacing: 0.5px;
+  line-height: 30px;
+
+  background-color: black;
+  color: white;
+  border: none;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+.members:hover {
+  border: solid 1px;
+  background-color: rgb(97, 97, 97);
+}
