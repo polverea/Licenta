@@ -1,0 +1,16 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 3vw;
+  padding-left: 5vw;
+  padding-right: 15vw;
+
+  .quiz-menu {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 4vw;
+  }
+}

@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useContext, useState } from "react";
 import GenerateRandomCode from "react-random-code-generator";
 import { GroupContext } from "../../contexts/group-context";

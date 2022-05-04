@@ -4,7 +4,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import GroupItem from "../../components/group-item/group-item.component";
 import JoinGroup from "../../components/join-group/join-group.component";
 import NewGroup from "../../components/new-group/new-group.component";
-import { GroupContext } from "../../contexts/group-context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import "./groups.styles.scss";
