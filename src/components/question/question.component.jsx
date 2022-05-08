@@ -17,13 +17,13 @@ import "./question.styles.scss";
 
 const Question = () => {
   const defaultValues = {
-    questionId: 0,
     questionText: "",
     ans1: "",
     ans2: "",
     ans3: "",
     ans4: "",
     points: 0,
+    rightAns: 0,
   };
   const [quizInfo, setQuizInfo] = useState(defaultValues);
   const { currentGroups } = useContext(GroupContext);
@@ -42,7 +42,6 @@ const Question = () => {
     const querySnapshot = await getDocs(dbQuerry);
     try {
       querySnapshot.forEach((document) => {
-        console.log(document.id, " => ", document.data().owner);
         const ref = doc(
           collection(
             doc(collection(db, "groups"), document.id),
@@ -50,7 +49,6 @@ const Question = () => {
           ),
           currentQuiz.uid
         );
-        console.log("crt", currentGroups.uid);
         updateDoc(ref, {
           question: arrayUnion({
             question: quizInfo.questionText,
@@ -58,13 +56,21 @@ const Question = () => {
             ans2: quizInfo.ans2,
             ans3: quizInfo.ans3,
             ans4: quizInfo.ans4,
+            points: quizInfo.points,
+            rightAns: quizInfo.rightAns,
           }),
         });
-        alert(`Congrats! You join to  group`);
+        alert(`Question has been added`);
       });
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleC = (event) => {
+    console.log("rigttttt", event.target.value);
+
+    setQuizInfo({ ...quizInfo, rightAns: event.target.value });
   };
 
   return (
@@ -81,7 +87,13 @@ const Question = () => {
 
       <div className="question-answers">
         <span> a: </span>
-        <input type="radio" name="ans1" />
+        <input
+          type="radio"
+          name="ans1"
+          value={1}
+          checked={quizInfo.rightAns == 1}
+          onChange={handleC}
+        />
         <input
           type="text"
           value={quizInfo.ans1}
@@ -91,7 +103,13 @@ const Question = () => {
 
         <div className="answer">
           <span> b: </span>
-          <input type="radio" name="ans1" />
+          <input
+            type="radio"
+            name="ans2"
+            value={2}
+            checked={quizInfo.rightAns == 2}
+            onChange={handleC}
+          />
           <input
             type="text"
             value={quizInfo.ans2}
@@ -101,7 +119,13 @@ const Question = () => {
         </div>
         <div className="answer">
           <span> c: </span>
-          <input type="radio" name="ans1" />
+          <input
+            type="radio"
+            name="ans3"
+            value={3}
+            checked={quizInfo.rightAns == 3}
+            onChange={handleC}
+          />
           <input
             type="text"
             value={quizInfo.ans3}
@@ -111,7 +135,13 @@ const Question = () => {
         </div>
         <div className="answer">
           <span> d: </span>
-          <input type="radio" name="ans1" />
+          <input
+            type="radio"
+            name="ans4"
+            value={4}
+            onChange={handleC}
+            checked={quizInfo.rightAns == 4}
+          />
           <input
             type="text"
             value={quizInfo.ans4}
@@ -120,6 +150,13 @@ const Question = () => {
           />
         </div>
         <div className="points">
+          <input
+            className="points-input"
+            type="number"
+            onChange={handleChange}
+            value={quizInfo.points}
+            name="points"
+          />
           <span>{quizInfo.points} points</span>
         </div>
         <CustomButton onClick={handleSubmit}>Next</CustomButton>

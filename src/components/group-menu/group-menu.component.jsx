@@ -4,7 +4,7 @@ import "./group-menu.styles.scss";
 import { GroupContext } from "../../contexts/group-context";
 import { Members } from "../members/members.component";
 import Quiz from "../quiz/quiz.component";
-import { useNavigate } from "react-router-dom";
+import ListQuizzes from "../list-quizzes/list-quizzes.component";
 
 const GroupMenu = () => {
   const [prop, setProp] = useState("");
@@ -53,12 +53,12 @@ const GroupMenu = () => {
             setProp(5);
           }}
         >
-          Delete quiz
+          Delete group
         </CustomButton>
       </div>
       <div className="content">
         {prop === 1 ? (
-          console.log("Quizzes")
+          <ListQuizzes />
         ) : prop === 2 ? (
           console.log("Results")
         ) : prop === 3 ? (
