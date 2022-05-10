@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya&display=swap");
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2vw;
+  font-family: "Alegreya", serif;
+
+  .questions {
+    margin-top: 5vh;
+    border: 1px black solid;
+    width: 25vw;
+    font-size: large;
+    margin-bottom: 3vh;
+  }
+
+  .points-correct {
+    color: green;
+  }
+}

@@ -5,6 +5,7 @@ import { GroupContext } from "../../contexts/group-context";
 import { Members } from "../members/members.component";
 import Quiz from "../quiz/quiz.component";
 import ListQuizzes from "../list-quizzes/list-quizzes.component";
+import DeleteGroup from "../delete-group/delete-group.component";
 
 const GroupMenu = () => {
   const [prop, setProp] = useState("");
@@ -66,7 +67,7 @@ const GroupMenu = () => {
         ) : prop === 4 ? (
           <Quiz />
         ) : prop === 5 ? (
-          console.log("Delete Quiz")
+          <DeleteGroup />
         ) : (
           console.log("Default")
         )}

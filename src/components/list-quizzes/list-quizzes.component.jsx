@@ -10,7 +10,7 @@ const ListQuizzes = () => {
   const quizzes = useRef([]);
 
   const { currentGroups } = useContext(GroupContext);
-  const { currentQuiz } = useContext(QuizContext);
+
   const [loading, setLoading] = useState(true);
   useEffect(async () => {
     const dbQuerry = query(
@@ -25,7 +25,6 @@ const ListQuizzes = () => {
             title: document.data().title,
           },
         ]);
-        console.log("daaaa", quizzes.current.title);
       });
       setLoading(false);
     } catch (e) {
@@ -34,7 +33,6 @@ const ListQuizzes = () => {
   }, [quizzes]);
   return (
     <div>
-      LIST QUIZZZES
       {!loading ? (
         <ShowQuiz quizzes={quizzes} title={quizzes.current.title} />
       ) : (
