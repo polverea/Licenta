@@ -12,6 +12,7 @@ const Groups = () => {
   const { currentUser } = useContext(UserContext);
   const grps = useRef([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(async () => {
     const dbQuerry = query(
       collection(db, "groups"),

@@ -3,7 +3,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase.utils";
 import { GroupContext } from "../../contexts/group-context";
 import { useContext, useState } from "react";
-import "./members.styles.scss";
+import "./GroupMembers.styles.scss";
 
 export const Members = () => {
   const { currentGroups } = useContext(GroupContext);

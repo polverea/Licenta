@@ -7,7 +7,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { GroupContext } from "../../contexts/group-context";
 import { QuizContext } from "../../contexts/quiz.context";
 import { db } from "../../firebase/firebase.utils";
@@ -68,8 +68,6 @@ const Question = () => {
   };
 
   const handleC = (event) => {
-    console.log("rigttttt", event.target.value);
-
     setQuizInfo({ ...quizInfo, rightAns: event.target.value });
   };
 

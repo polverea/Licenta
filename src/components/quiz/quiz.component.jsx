@@ -26,7 +26,7 @@ const Quiz = () => {
   });
   const { setCurrentQuiz } = useContext(QuizContext);
 
-  const createGroup = async () => {
+  const createQuiz = async () => {
     const dbQuerry = query(
       collection(db, "groups"),
       where("code", "==", currentGroups.code)
@@ -49,6 +49,7 @@ const Quiz = () => {
       });
       const ref2 = collection(db, "user-quizzes");
       await addDoc(ref2, {
+        groupName: currentGroups.name,
         user: currentUser.displayName,
         title: info.title,
         code: currentGroups.code,
@@ -83,7 +84,7 @@ const Quiz = () => {
         name="time"
         value={info.time}
       />
-      <CustomButton onClick={createGroup}>Create quiz</CustomButton>
+      <CustomButton onClick={createQuiz}>Create quiz</CustomButton>
     </div>
   );
 };

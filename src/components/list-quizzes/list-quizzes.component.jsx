@@ -1,9 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
 import { GroupContext } from "../../contexts/group-context";
-import { QuizContext } from "../../contexts/quiz.context";
 import { db } from "../../firebase/firebase.utils";
-import CustomButton from "../custom-button/custom-button.component";
 import ShowQuiz from "../show-quiz/show-quiz.component";
 
 const ListQuizzes = () => {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import Question from "../../components/question/question.component";
 import "./quiz-menu.styles.scss";

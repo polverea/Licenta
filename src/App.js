@@ -10,6 +10,8 @@ import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-up/sign-in-and-sig
 import Groups from "./routes/groups/groups.component";
 import GroupMenu from "./components/group-menu/group-menu.component";
 import QuizMenu from "./routes/quiz-menu/quiz-menu.component";
+import JoinedGroupMenu from "./components/joinedGroupMenu/joinedGroupMenu.component";
+import StartQuiz from "./routes/startQuiz/startQuiz.component";
 const App = () => {
   const { currentUser } = useContext(UserContext);
   console.log(currentUser);
@@ -30,7 +32,16 @@ const App = () => {
         />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/profile" element={<Profile />} />
-
+        <Route
+          exact
+          path={`/group/:GroupTitle`}
+          element={<JoinedGroupMenu />}
+        />
+        <Route
+          exact
+          path={`/group/:GroupTitle/:QuizTitle`}
+          element={<StartQuiz />}
+        />
         <Route exact path={`/groups/:code`} element={<GroupMenu />} />
         <Route exact path={`/groups/:code/quiz/:id`} element={<QuizMenu />} />
       </Route>

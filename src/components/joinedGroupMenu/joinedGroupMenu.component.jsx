@@ -1,24 +1,19 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CustomButton from "../custom-button/custom-button.component";
-import "./group-menu.styles.scss";
-import { GroupContext } from "../../contexts/group-context";
-import { Members } from "../GroupMembers/GroupMembers.component";
-import Quiz from "../quiz/quiz.component";
-import ListQuizzes from "../list-quizzes/list-quizzes.component";
-import DeleteGroup from "../delete-group/delete-group.component";
 
-const GroupMenu = () => {
+import { Members } from "../GroupMembers/GroupMembers.component";
+import ListJoinedQuizzes from "../list-joined-quizzes/list-joined-quizzes.component";
+
+import ListQuizzes from "../list-quizzes/list-quizzes.component";
+
+const JoinedGroupMenu = () => {
   const [prop, setProp] = useState("");
-  const { currentGroups } = useContext(GroupContext);
 
   return (
     <div className="menu-container">
       <div className="menu">
         <div className="group-info">
-          <h1> {currentGroups.name} </h1>
-          <h2>
-            Your join code is: <b>{currentGroups.code}</b>
-          </h2>
+          <h2>Welcome to the group!</h2>
         </div>
         <CustomButton
           onClick={() => {
@@ -41,33 +36,14 @@ const GroupMenu = () => {
         >
           Members
         </CustomButton>
-
-        <CustomButton
-          onClick={() => {
-            setProp(4);
-          }}
-        >
-          Add new quiz
-        </CustomButton>
-        <CustomButton
-          onClick={() => {
-            setProp(5);
-          }}
-        >
-          Delete group
-        </CustomButton>
       </div>
       <div className="content">
         {prop === 1 ? (
-          <ListQuizzes />
+          <ListJoinedQuizzes />
         ) : prop === 2 ? (
           console.log("Results")
         ) : prop === 3 ? (
           <Members key={new Date().toString} />
-        ) : prop === 4 ? (
-          <Quiz />
-        ) : prop === 5 ? (
-          <DeleteGroup />
         ) : (
           console.log("Default")
         )}
@@ -76,4 +52,4 @@ const GroupMenu = () => {
   );
 };
 
-export default GroupMenu;
+export default JoinedGroupMenu;

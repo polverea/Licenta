@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import GenerateRandomCode from "react-random-code-generator";
 import { GroupContext } from "../../contexts/group-context";
@@ -6,12 +6,11 @@ import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import GroupItem from "../group-item/group-item.component";
 import "./new-group.styles.scss";
 
 const NewGroup = () => {
   const { currentUser } = useContext(UserContext);
-  const { currentGroups, setCurrentGroups } = useContext(GroupContext);
+  const { setCurrentGroups } = useContext(GroupContext);
   const defaultFilds = {
     owner: "",
     code: "",
