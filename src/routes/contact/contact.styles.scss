@@ -1,13 +1,16 @@
 .contact-container {
-  width: 800px;
-  height: 400px;
+  width: 50vw;
+  height: 60vh;
   display: flex;
   justify-content: space-between;
   margin: auto;
 
   .contact-form {
     width: 50vw;
-
+    padding: 50px 50px 50px 50px;
+    background-color: hwb(49 26% 21% / 0.3);
+    border: 1px solid;
+    box-shadow: 10px 10px 8px #888888;
     .message {
       width: 100%;
       display: flex;

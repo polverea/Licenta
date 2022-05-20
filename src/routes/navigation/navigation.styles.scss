@@ -1,9 +1,10 @@
 .navigation {
   height: 70px;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  background-color: hwb(49 26% 21% / 0.3);
 
   .logo-container {
     height: 100%;

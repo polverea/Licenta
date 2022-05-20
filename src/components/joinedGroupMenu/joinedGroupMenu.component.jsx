@@ -4,7 +4,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import { Members } from "../GroupMembers/GroupMembers.component";
 import ListJoinedQuizzes from "../list-joined-quizzes/list-joined-quizzes.component";
 
-import ListQuizzes from "../list-quizzes/list-quizzes.component";
+import ShowJoinedQuizResults from "../showJoinedQuizResults/showJoinedQuizResults.component";
 
 const JoinedGroupMenu = () => {
   const [prop, setProp] = useState("");
@@ -41,7 +41,7 @@ const JoinedGroupMenu = () => {
         {prop === 1 ? (
           <ListJoinedQuizzes />
         ) : prop === 2 ? (
-          console.log("Results")
+          <ShowJoinedQuizResults />
         ) : prop === 3 ? (
           <Members key={new Date().toString} />
         ) : (

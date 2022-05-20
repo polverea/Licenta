@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import CustomButton from "../custom-button/custom-button.component";
 import { useNavigate } from "react-router-dom";
 import { GroupContext } from "../../contexts/group-context";
+import "./group-item.styles.scss";
 
 export default function GroupItem({ code, name }) {
   const navigate = useNavigate();
@@ -13,9 +14,9 @@ export default function GroupItem({ code, name }) {
     navigate(`/groups/${code}`);
   };
   return (
-    <div>
+    <div className="group-item">
       <CustomButton onClick={handleSubmit}>{name}</CustomButton>
-      <h3>Your group code is: {code}</h3>
+      <h3>Group code is: {code}</h3>
     </div>
   );
 }

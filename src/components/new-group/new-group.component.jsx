@@ -6,7 +6,6 @@ import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import "./new-group.styles.scss";
 
 const NewGroup = () => {
   const { currentUser } = useContext(UserContext);
@@ -52,7 +51,7 @@ const NewGroup = () => {
     event.preventDefault();
     await createGroup();
     setGroup(defaultFilds);
-    alert("grupul a fost creat cu succes");
+    alert("New group successfully created");
   };
 
   return (

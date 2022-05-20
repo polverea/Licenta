@@ -59,9 +59,11 @@ const ShowQuiz = ({ quizzes }) => {
           );
         })}
       </div>
-      {questions.map((question) => {
-        return <ShowQuestions question={question} />;
-      })}
+      {questions.questionText != "" ? (
+        <ShowQuestions questions={questions} />
+      ) : (
+        console.log("No questions yet")
+      )}
     </div>
   );
 };

@@ -13,10 +13,10 @@ import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 import ToTheGroup from "../toTheGroup/toTheGroup.component";
-import StartQuiz from "../toTheGroup/toTheGroup.component";
 
 const JoinGroup = () => {
   const { currentUser } = useContext(UserContext);
+
   const [code, setCode] = useState({
     code: "",
   });
@@ -30,7 +30,10 @@ const JoinGroup = () => {
     );
     const querySnapshot2 = await getDocs(dbQuerry2);
     querySnapshot2.forEach((document) => {
-      joinedGroups.current.push({ name: document.data().name });
+      joinedGroups.current.push({
+        name: document.data().name,
+        code: document.data().code,
+      });
     });
     setLoading(false);
   }, [currentUser]);
@@ -69,6 +72,7 @@ const JoinGroup = () => {
     <div className="join-group">
       <form onSubmit={handleSubmit}>
         <h2>Join a group</h2>
+        <h3> Here you can join to a group of people and take a quiz </h3>
         <FormInput
           label="group name"
           type="text"
@@ -78,6 +82,7 @@ const JoinGroup = () => {
         />
         <CustomButton type="submit"> Join a group </CustomButton>
       </form>
+
       {!loading ? (
         <ToTheGroup joinedGroups={joinedGroups} />
       ) : (

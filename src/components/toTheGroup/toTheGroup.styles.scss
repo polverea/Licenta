@@ -1,0 +1,24 @@
+.joined-groups-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10vh;
+  padding: 40px 40px 40px 40px;
+  height: auto;
+  width: inherit;
+  flex-direction: column;
+  border-radius: 15px;
+  gap: 10px;
+  background-color: hwb(49 26% 21% / 0.3);
+  border: 1px solid;
+  box-shadow: 10px 10px 8px #888888;
+
+  .joined-groups {
+    display: flex;
+    align-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .joined-groups :hover {
+    transform: scale(1.1);
+  }
+}

@@ -1,5 +1,4 @@
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
@@ -67,7 +66,6 @@ const CompleteTheQuiz = ({ questions }) => {
           );
         })}
       </div>
-      <div className=""></div>
     </div>
   );
 };

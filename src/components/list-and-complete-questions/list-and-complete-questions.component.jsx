@@ -29,7 +29,6 @@ const ListAndCompleteQuestions = ({ title, question }) => {
       where("groupName", "==", currentGroups.name),
       where("title", "==", title)
     );
-
     const querySnapshot = await getDocs(dbQuerry);
     querySnapshot.forEach((document) => {
       id.current = document.id;
@@ -125,7 +124,7 @@ const ListAndCompleteQuestions = ({ title, question }) => {
             </tr>
           </div>
         </div>
-        <CustomButton onClick={handleClick}>Submit answer</CustomButton>
+        <CustomButton onClick={handleClick}>submit answer</CustomButton>
       </table>
     </div>
   );

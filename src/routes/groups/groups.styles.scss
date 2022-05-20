@@ -1,24 +1,38 @@
 .groups-container {
   width: 90vw;
-  height: 30vh;
+  height: 40vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 70px;
+  gap: 40px;
   .create-group {
     padding: 20px;
+    width: 40vw;
+    height: 35vh;
+    background-color: hwb(49 26% 21% / 0.3);
+    border: 1px solid;
+    box-shadow: 10px 10px 8px #888888;
+    border-radius: 15px;
   }
 
   .join-group {
     padding: 20px;
+    width: 40vw;
+    height: 35vh;
+    background-color: hwb(49 26% 21% / 0.3);
+    border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 10px 10px 8px #888888;
   }
-  .groups {
-    width: 50vw;
+  .group-of-items {
+    width: 40vw;
     height: auto;
-    padding-left: 10vw;
-    padding-top: 20px;
-    border-color: red;
-    border: solid;
-    display: inline;
+    border-radius: 15px;
+    padding: 40px 40px 40px 40px;
+    background-color: hwb(49 26% 21% / 0.3);
+    border: 1px solid;
+    box-shadow: 10px 10px 8px #888888;
   }
 }

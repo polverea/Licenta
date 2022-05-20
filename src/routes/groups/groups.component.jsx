@@ -38,12 +38,12 @@ const Groups = () => {
   }, [currentUser]);
 
   return (
-    <div>
-      <div className="groups-container">
-        <NewGroup />
-        <JoinGroup />
-      </div>
-      <div className="groups">
+    <div className="groups-container">
+      <NewGroup />
+      <JoinGroup />
+
+      <div className="group-of-items">
+        <h2>Created groups:</h2>
         {!loading
           ? Object.keys(grps.current).map((grp) => {
               return (
