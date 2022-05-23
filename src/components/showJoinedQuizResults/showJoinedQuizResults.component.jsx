@@ -1,12 +1,10 @@
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
 import { GroupContext } from "../../contexts/group-context";
-import { QuizContext } from "../../contexts/quiz.context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 
 const ShowJoinedQuizResults = () => {
-  const { currentQuiz } = useContext(QuizContext);
   const { currentUser } = useContext(UserContext);
   const { currentGroups } = useContext(GroupContext);
   const id = useRef([]);
@@ -53,7 +51,7 @@ const ShowJoinedQuizResults = () => {
                 </h3>
               );
             })
-          : console.log("123124112")}
+          : console.log("final", final.current)}
       </h1>
     </div>
   );

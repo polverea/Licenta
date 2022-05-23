@@ -6,6 +6,8 @@ import { Members } from "../GroupMembers/GroupMembers.component";
 import Quiz from "../quiz/quiz.component";
 import ListQuizzes from "../list-quizzes/list-quizzes.component";
 import DeleteGroup from "../delete-group/delete-group.component";
+import ShowJoinedQuizResults from "../showJoinedQuizResults/showJoinedQuizResults.component";
+import ShowAllResults from "../showAllResults/showAllResults.component";
 
 const GroupMenu = () => {
   const [prop, setProp] = useState("");
@@ -61,7 +63,7 @@ const GroupMenu = () => {
         {prop === 1 ? (
           <ListQuizzes />
         ) : prop === 2 ? (
-          console.log("Results")
+          <ShowAllResults />
         ) : prop === 3 ? (
           <Members key={new Date().toString} />
         ) : prop === 4 ? (
