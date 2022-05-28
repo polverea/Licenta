@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { GroupContext } from "../../contexts/group-context";
 import { QuizContext } from "../../contexts/quiz.context";
 import { db } from "../../firebase/firebase.utils";
-import StartQuiz from "../../routes/startQuiz/startQuiz.component";
 import CustomButton from "../custom-button/custom-button.component";
-import ShowQuiz from "../show-quiz/show-quiz.component";
+import "./list-joined-quizzes.styles.scss";
 
 const ListJoinedQuizzes = () => {
   const quizzes = useRef([]);
   const navigate = useNavigate();
   const { currentGroups } = useContext(GroupContext);
-  const { currentQuiz, setCurrentQuiz } = useContext(QuizContext);
+  const { setCurrentQuiz } = useContext(QuizContext);
   const [loading, setLoading] = useState(true);
   useEffect(async () => {
     const dbQuerry = query(
@@ -23,6 +22,7 @@ const ListJoinedQuizzes = () => {
     const querySnapshot = await getDocs(dbQuerry);
     try {
       querySnapshot.forEach((document) => {
+        console.log("finishh", document.data());
         quizzes.current.push({
           title: document.data().title,
         });
@@ -38,7 +38,8 @@ const ListJoinedQuizzes = () => {
   };
 
   return (
-    <div>
+    <div className="quizzes">
+      <h2>Your quizzes </h2>
       {!loading
         ? Object.keys(quizzes.current).map((quiz) => {
             return (

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Outlet, Link, Navigate } from "react-router-dom";
+import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../firebase/firebase.utils";
@@ -8,9 +8,10 @@ import "./navigation.styles.scss";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const signOutHandler = async () => {
     await signOutUser();
+    navigate("/auth");
   };
 
   return (

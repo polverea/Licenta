@@ -1,10 +1,14 @@
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  increment,
+  query,
+  where,
+} from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
-import ListAndCompleteQuestions from "../../components/list-and-complete-questions/list-and-complete-questions.component";
-import ShowQuestions from "../../components/show-questions/show-questions.component";
 import { GroupContext } from "../../contexts/group-context";
 import { QuizContext } from "../../contexts/quiz.context";
-import { score } from "../../components/list-and-complete-questions/list-and-complete-questions.component";
 import { db } from "../../firebase/firebase.utils";
 import CompleteTheQuiz from "../completeTheQuiz/completeTheQuiz.component";
 
@@ -30,7 +34,6 @@ const StartQuiz = () => {
       where("name", "==", currentGroups.name)
     );
     const querySnapshot = await getDocs(dbQuerry);
-    console.log("aici", currentQuiz.title);
     try {
       querySnapshot.forEach((document) => {
         docId.current = document.id;

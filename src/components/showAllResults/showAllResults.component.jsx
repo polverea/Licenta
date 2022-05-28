@@ -8,11 +8,14 @@ import {
 } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
 import { GroupContext } from "../../contexts/group-context";
+import { UserContext } from "../../contexts/user.context";
 
 import { db } from "../../firebase/firebase.utils";
+import "./showAllResults.styles.scss";
 
 const ShowAllResults = () => {
   const { currentGroups } = useContext(GroupContext);
+  const { currentUser } = useContext(UserContext);
   const id = useRef([]);
   const [loading, setLoading] = useState(true);
   const [final, setFinal] = useState([]);
@@ -66,7 +69,12 @@ const ShowAllResults = () => {
   }, []);
   return (
     <div>
-      <table style={{ border: "1px solid" }}>
+      <h2>
+        {" "}
+        Hi, {currentUser.displayName}. Here are the results for all users who
+        joined this group:
+      </h2>
+      <table>
         <tr>
           <th>Quiz title</th>
           <th>User name</th>

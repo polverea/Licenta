@@ -16,20 +16,12 @@ const QuizMenu = () => {
             numberOfQuestions.current.push({
               numberOfQuestions: "New Question",
             });
-
-            console.log("numb", numberOfQuestions.current);
             setForceRender(!forceRender);
           }}
         >
           New question
         </CustomButton>
-        <CustomButton
-          onClick={() => {
-            setOption("Save");
-          }}
-        >
-          Save
-        </CustomButton>
+
         <CustomButton
           onClick={() => {
             setOption("Delete Quiz");
@@ -43,8 +35,6 @@ const QuizMenu = () => {
           ? numberOfQuestions.current.map(() => {
               return <Question />;
             })
-          : option === "Save"
-          ? console.log("save")
           : option === "Delete Quiz"
           ? console.log("delete quiz")
           : console.log("default")}

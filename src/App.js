@@ -12,10 +12,9 @@ import GroupMenu from "./components/group-menu/group-menu.component";
 import QuizMenu from "./routes/quiz-menu/quiz-menu.component";
 import JoinedGroupMenu from "./components/joinedGroupMenu/joinedGroupMenu.component";
 import StartQuiz from "./routes/startQuiz/startQuiz.component";
+
 const App = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
-
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>

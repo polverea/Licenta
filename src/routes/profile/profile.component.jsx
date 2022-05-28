@@ -4,51 +4,49 @@ import { UserContext } from "../../contexts/user.context";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import { doc, updateDoc } from "firebase/firestore";
 
-import { db, updateYourEmail } from "../../firebase/firebase.utils";
+import {
+  db,
+  updateYourDisplayName,
+  updateYourEmail,
+} from "../../firebase/firebase.utils";
 
 import "./profile.styles.scss";
 
 const Profile = () => {
   const [user, setUser] = useState({
-    displayName: "",
-    oldDisplayName: "",
     email: "",
-    oldEmail: "",
+    displayName: "",
   });
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  console.log(currentUser);
-
   useEffect(() => {
     setUser({
-      ...user,
-      oldDisplayName: currentUser.displayName,
-      oldEmail: currentUser.email,
+      displayName: currentUser.displayName ? currentUser.displayName : "456",
+      email: currentUser.email ? currentUser.email : "456",
     });
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (user.displayName !== user.oldDisplayName && user.displayName !== "") {
-      await setCurrentUser({ ...currentUser, displayName: user.displayName });
-
-      console.log("aici se seteaza display name-ul", currentUser.displayName);
-
-      const ref = doc(db, "users", currentUser.uid);
-      await updateDoc(ref, {
-        displayName: user.displayName,
-      });
+    let isOk = true;
+    if (user.displayName !== "") {
+      await updateYourDisplayName(user.displayName);
+      setCurrentUser({ ...currentUser, displayName: user.displayName });
     } else {
-      alert("Display name is empty!");
+      alert("Display Name is empty");
+      isOk = false;
     }
+    console.log("aici se seteaza display name-ul", currentUser.displayName);
 
-    if (user.email !== user.oldEmail && user.email !== "") {
+    const ref = doc(db, "users", currentUser.uid);
+    await updateDoc(ref, {
+      displayName: user.displayName,
+    });
+
+    if (user.email !== "") {
       updateYourEmail(user.email);
       setCurrentUser({ ...currentUser, email: user.email });
-
-      console.log(currentUser.email);
 
       const ref = doc(db, "users", currentUser.uid);
       await updateDoc(ref, {
@@ -56,7 +54,9 @@ const Profile = () => {
       });
     } else {
       alert("email is empty!");
+      isOk = false;
     }
+    if (isOk) alert("Update complete");
   };
 
   const handleChange = (event) => {
@@ -85,7 +85,7 @@ const Profile = () => {
             value={user.email}
             onChange={handleChange}
           />
-          {console.log(user)}
+
           <CustomButton type="submit"> Update </CustomButton>
         </form>
       </div>

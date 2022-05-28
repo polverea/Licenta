@@ -41,18 +41,23 @@ const ShowJoinedQuizResults = () => {
 
   return (
     <div className="results">
-      <h1>
+      <h2> Hi, {currentUser.displayName}. Here are your results: </h2>
+      <table>
+        <tr>
+          <th>Quiz title</th>
+          <th>Result</th>
+        </tr>
         {!loading
           ? Object.keys(final.current).map((index) => {
               return (
-                <h3>
-                  Your result for {final.current[index].quizTitle} is{" "}
-                  {final.current[index].result} points
-                </h3>
+                <tr key={index}>
+                  <td>{final.current[index].quizTitle}</td>
+                  <td>{final.current[index].result} points</td>
+                </tr>
               );
             })
           : console.log("final", final.current)}
-      </h1>
+      </table>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   doc,
   getDocs,
@@ -7,6 +8,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useContext, useEffect, useRef } from "react";
+import CustomButton from "../../components/custom-button/custom-button.component";
 import ListAndCompleteQuestions from "../../components/list-and-complete-questions/list-and-complete-questions.component";
 import { GroupContext } from "../../contexts/group-context";
 import { QuizContext } from "../../contexts/quiz.context";
@@ -54,18 +56,32 @@ const CompleteTheQuiz = ({ questions }) => {
       }
     );
   }, []);
+
+  const handleFinish = async () => {
+    const ref = doc(
+      collection(
+        doc(collection(db, "user-quizzes"), id.current),
+        currentUser.displayName
+      ),
+      "finish"
+    );
+    console.log("da", ref);
+    setDoc(ref, {
+      finish: 1,
+    });
+  };
   return (
     <div>
-      <div className="question">
-        {questions.map((question) => {
-          return (
-            <ListAndCompleteQuestions
-              title={currentQuiz.title}
-              question={question}
-            />
-          );
-        })}
-      </div>
+      {questions.map((question, key) => {
+        return (
+          <ListAndCompleteQuestions
+            title={currentQuiz.title}
+            question={question}
+            questionId={key}
+          />
+        );
+      })}
+      <CustomButton onClick={handleFinish}>Finish</CustomButton>
     </div>
   );
 };

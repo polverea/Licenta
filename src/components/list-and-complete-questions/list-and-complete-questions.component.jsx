@@ -12,8 +12,9 @@ import { GroupContext } from "../../contexts/group-context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
+import "./list-and-complete-questions.styles.scss";
 
-const ListAndCompleteQuestions = ({ title, question }) => {
+const ListAndCompleteQuestions = ({ title, question, questionId }) => {
   const { currentGroups } = useContext(GroupContext);
   const { currentUser } = useContext(UserContext);
   const id = useRef();
@@ -53,6 +54,7 @@ const ListAndCompleteQuestions = ({ title, question }) => {
           score: 0,
         });
       }
+      question = null;
     } catch (e) {
       console.log(e);
     }
@@ -62,14 +64,18 @@ const ListAndCompleteQuestions = ({ title, question }) => {
     setQuestionInfo({ ...questionInfo, answer: event.target.value });
   };
   return (
-    <div>
-      <table>
-        <tr>
-          <th>Question: {question.question}</th>
-        </tr>
-        <div className="questions">
+    <div className="question-container">
+      <div className="quest">
+        <table>
           <tr>
-            <div className="question-answers">
+            <th>
+              {" "}
+              <h3>{question.question}</h3>
+            </th>
+          </tr>
+
+          <tr>
+            <div className="answer">
               <input
                 type="radio"
                 name="ans1"
@@ -81,7 +87,7 @@ const ListAndCompleteQuestions = ({ title, question }) => {
             </div>
           </tr>
           <tr>
-            <div className="question-answers">
+            <div className="answer">
               <input
                 type="radio"
                 name="ans1"
@@ -93,7 +99,7 @@ const ListAndCompleteQuestions = ({ title, question }) => {
             </div>
           </tr>
           <tr>
-            <div className="question-answers">
+            <div className="answer">
               <input
                 type="radio"
                 name="ans1"
@@ -105,7 +111,7 @@ const ListAndCompleteQuestions = ({ title, question }) => {
             </div>
           </tr>
           <tr>
-            <div className="question-answers">
+            <div className="answer">
               <input
                 type="radio"
                 name="ans1"
@@ -123,9 +129,10 @@ const ListAndCompleteQuestions = ({ title, question }) => {
               </td>
             </tr>
           </div>
-        </div>
-        <CustomButton onClick={handleClick}>submit answer</CustomButton>
-      </table>
+
+          <CustomButton onClick={handleClick}>Submit question</CustomButton>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,11 @@
+.question-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 6vh;
+
+  flex-direction: column;
+  border-radius: 15px;
+  gap: 10px;
+}

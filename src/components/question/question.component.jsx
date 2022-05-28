@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   getDocs,
+  increment,
   query,
   updateDoc,
   where,
@@ -74,6 +75,7 @@ const Question = () => {
   return (
     <div className="question">
       <h2>Add new question</h2>
+
       <FormInput
         label="question"
         type="text"
@@ -84,21 +86,22 @@ const Question = () => {
       />
 
       <div className="question-answers">
-        <span> a: </span>
-        <input
-          type="radio"
-          name="ans1"
-          value={1}
-          checked={quizInfo.rightAns == 1}
-          onChange={handleC}
-        />
-        <input
-          type="text"
-          value={quizInfo.ans1}
-          onChange={handleChange}
-          name="ans1"
-        />
-
+        <div className="answer">
+          <span> a: </span>
+          <input
+            type="radio"
+            name="ans1"
+            value={1}
+            checked={quizInfo.rightAns == 1}
+            onChange={handleC}
+          />
+          <input
+            type="text"
+            value={quizInfo.ans1}
+            onChange={handleChange}
+            name="ans1"
+          />
+        </div>
         <div className="answer">
           <span> b: </span>
           <input
@@ -148,6 +151,7 @@ const Question = () => {
           />
         </div>
         <div className="points">
+          <span>{quizInfo.points} points</span>
           <input
             className="points-input"
             type="number"
@@ -155,7 +159,6 @@ const Question = () => {
             value={quizInfo.points}
             name="points"
           />
-          <span>{quizInfo.points} points</span>
         </div>
         <CustomButton onClick={handleSubmit}>Next</CustomButton>
       </div>

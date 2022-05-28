@@ -39,7 +39,9 @@ const ShowQuiz = ({ quizzes }) => {
 
       const refSnapshot = await getDocs(ref);
       refSnapshot.forEach((document) => {
-        setQuestions(document.data().question);
+        if (!document.data().final) {
+          setQuestions(document.data().question);
+        }
       });
       setLoading(false);
     } catch (e) {

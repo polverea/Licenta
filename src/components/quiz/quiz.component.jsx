@@ -14,6 +14,7 @@ import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
+import "./quiz.styles.scss";
 
 const Quiz = () => {
   const { currentGroups } = useContext(GroupContext);
@@ -67,7 +68,7 @@ const Quiz = () => {
     setInfo({ ...info, [name]: value });
   };
   return (
-    <div>
+    <div className="quiz-title">
       <FormInput
         label="Quiz title"
         type="text"
@@ -76,14 +77,7 @@ const Quiz = () => {
         name="title"
         value={info.title}
       />
-      <FormInput
-        label="Time"
-        type="text"
-        required
-        onChange={handleChange}
-        name="time"
-        value={info.time}
-      />
+
       <CustomButton onClick={createQuiz}>Create quiz</CustomButton>
     </div>
   );
