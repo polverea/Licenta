@@ -1,6 +1,6 @@
 import { collection, deleteDoc, query, where } from "firebase/firestore";
 import { useContext, useEffect } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { db } from "../../firebase/firebase.utils";
 
 const DeleteGroup = () => {

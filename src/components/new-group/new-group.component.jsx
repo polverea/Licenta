@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { useContext, useState } from "react";
 import GenerateRandomCode from "react-random-code-generator";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
@@ -44,14 +44,19 @@ const NewGroup = () => {
     } catch (e) {
       console.log("error", e.message);
     }
-    setCurrentGroups(...group);
+    setCurrentGroups({
+      owner: owner,
+      name: name,
+      code: code,
+      members: members,
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createGroup();
-    setGroup(defaultFilds);
     alert("New group successfully created");
+    setGroup(defaultFilds);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../firebase/firebase.utils";

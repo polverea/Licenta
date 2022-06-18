@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import CustomButton from "../custom-button/custom-button.component";
 import "./group-menu.styles.scss";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { Members } from "../GroupMembers/GroupMembers.component";
 import Quiz from "../quiz/quiz.component";
 import ListQuizzes from "../list-quizzes/list-quizzes.component";

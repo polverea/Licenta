@@ -5,20 +5,23 @@ import {
   getDoc,
   getDocs,
   query,
+  setDoc,
   where,
 } from "firebase/firestore";
-import { useContext, useRef, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { useContext, useEffect, useRef, useState } from "react";
+import { GroupContext } from "../../contexts/group.context";
+import { QuizContext } from "../../contexts/quiz.context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
 import "./list-and-complete-questions.styles.scss";
 
-const ListAndCompleteQuestions = ({ title, question, questionId }) => {
+const ListAndCompleteQuestions = ({ title, question }) => {
   const { currentGroups } = useContext(GroupContext);
   const { currentUser } = useContext(UserContext);
+  const { currentQuiz } = useContext(QuizContext);
   const id = useRef();
-
+  let result = useRef(0);
   const [questionInfo, setQuestionInfo] = useState({
     answer: "",
   });
@@ -38,6 +41,7 @@ const ListAndCompleteQuestions = ({ title, question, questionId }) => {
       doc(collection(db, "user-quizzes"), id.current),
       currentUser.displayName
     );
+
     try {
       if (question.rightAns == questionInfo.answer) {
         addDoc(ref, {
@@ -58,6 +62,41 @@ const ListAndCompleteQuestions = ({ title, question, questionId }) => {
     } catch (e) {
       console.log(e);
     }
+
+    alert("Your answer has been recorded");
+    const dbQuerryForResult = query(
+      collection(db, "user-quizzes"),
+      where("groupName", "==", currentGroups.name),
+      where("title", "==", currentQuiz.title)
+    );
+    const querySnapshotForResult = await getDocs(dbQuerryForResult);
+    querySnapshotForResult.forEach((document) => {
+      id.current = document.id;
+    });
+    const refForResult = collection(
+      doc(collection(db, "user-quizzes"), id.current),
+      currentUser.displayName
+    );
+    const refSnapshotForResult = await getDocs(refForResult);
+    refSnapshotForResult.forEach((document) => {
+      if (document.data().score)
+        result.current += Number(document.data().score);
+      console.log(result.current);
+    });
+    setDoc(
+      doc(
+        collection(
+          doc(collection(db, "user-quizzes"), id.current),
+          currentUser.displayName
+        ),
+        "result"
+      ),
+      {
+        quizTitle: currentQuiz.title,
+        user: currentUser.displayName,
+        finalScore: result,
+      }
+    );
   };
 
   const handleC = (event) => {

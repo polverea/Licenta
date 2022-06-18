@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase.utils";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { useContext, useState } from "react";
 import "./GroupMembers.styles.scss";
 

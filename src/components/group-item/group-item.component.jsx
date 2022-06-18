@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CustomButton from "../custom-button/custom-button.component";
 import { useNavigate } from "react-router-dom";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import "./group-item.styles.scss";
 
 export default function GroupItem({ code, name }) {

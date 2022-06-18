@@ -39,7 +39,7 @@ const JoinedGroupMenu = () => {
       </div>
       <div className="content">
         {prop === 1 ? (
-          <ListJoinedQuizzes />
+          <ListJoinedQuizzes key={prop} />
         ) : prop === 2 ? (
           <ShowJoinedQuizResults />
         ) : prop === 3 ? (

@@ -1,8 +1,9 @@
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";
+import "./showJoinedQuizResults.styles.scss";
 
 const ShowJoinedQuizResults = () => {
   const { currentUser } = useContext(UserContext);
@@ -20,6 +21,7 @@ const ShowJoinedQuizResults = () => {
     querySnapshot.forEach((document) => {
       id.current.push(document.id);
     });
+
     id.current.map(async (idul) => {
       const ref = collection(
         doc(collection(db, "user-quizzes"), idul),
@@ -28,6 +30,7 @@ const ShowJoinedQuizResults = () => {
       const refSnapshot = await getDocs(ref);
       refSnapshot.forEach((document) => {
         if (document.data().finalScore) {
+          console.log("document scor", document.data().finalScore);
           setLoading(true);
           final.current.push({
             result: document.data().finalScore.current,
@@ -40,7 +43,7 @@ const ShowJoinedQuizResults = () => {
   }, []);
 
   return (
-    <div className="results">
+    <div className="joined-quiz-results">
       <h2> Hi, {currentUser.displayName}. Here are your results: </h2>
       <table>
         <tr>

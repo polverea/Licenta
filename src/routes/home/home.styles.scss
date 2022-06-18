@@ -1,16 +1,18 @@
-.container {
-  width: 90vw;
-  height: 50vh;
+.homepage {
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  .profile {
+  margin-top: 20vh;
+  .logo {
+    height: 40vh;
     width: 40vw;
+  }
+
+  .text-presentation {
     padding: 50px 50px 50px 50px;
     background-color: hwb(49 26% 21% / 0.3);
     border: 1px solid;
     box-shadow: 10px 10px 8px #888888;
     border-radius: 15px;
+    width: 40vw;
   }
 }

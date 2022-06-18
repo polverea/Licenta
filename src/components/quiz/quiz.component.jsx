@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { QuizContext } from "../../contexts/quiz.context";
 import { UserContext } from "../../contexts/user.context";
 import { db } from "../../firebase/firebase.utils";

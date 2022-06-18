@@ -1,7 +1,7 @@
 import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import "./show-quiz.styles.scss";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";

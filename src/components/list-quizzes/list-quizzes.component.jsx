@@ -1,6 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { db } from "../../firebase/firebase.utils";
 import ShowQuiz from "../show-quiz/show-quiz.component";
 

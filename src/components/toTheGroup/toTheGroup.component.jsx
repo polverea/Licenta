@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import CustomButton from "../custom-button/custom-button.component";
 import "./toTheGroup.styles.scss";
 

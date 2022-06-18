@@ -7,7 +7,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { UserContext } from "../../contexts/user.context";
 
 import { db } from "../../firebase/firebase.utils";
@@ -68,7 +68,7 @@ const ShowAllResults = () => {
     setLoading(false);
   }, []);
   return (
-    <div>
+    <div className="show-all-results">
       <h2>
         {" "}
         Hi, {currentUser.displayName}. Here are the results for all users who

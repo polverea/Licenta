@@ -6,18 +6,20 @@ import ContactPage from "./routes/contact/contact.component";
 import Navigation from "./routes/navigation/navigation.component";
 import { useContext } from "react";
 import { UserContext } from "./contexts/user.context";
-import { SignInAndSignUpPage } from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import { SignInAndSignUpPage } from "./routes/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import Groups from "./routes/groups/groups.component";
 import GroupMenu from "./components/group-menu/group-menu.component";
 import QuizMenu from "./routes/quiz-menu/quiz-menu.component";
 import JoinedGroupMenu from "./components/joinedGroupMenu/joinedGroupMenu.component";
 import StartQuiz from "./routes/startQuiz/startQuiz.component";
+import Home from "./routes/home/home.component";
 
 const App = () => {
   const { currentUser } = useContext(UserContext);
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>
+        <Route path="/" element={<Home />} />
         <Route path="/groups" element={<Groups />} />
         <Route
           path="/auth"

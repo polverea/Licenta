@@ -1,13 +1,6 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  increment,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useRef, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { QuizContext } from "../../contexts/quiz.context";
 import { db } from "../../firebase/firebase.utils";
 import CompleteTheQuiz from "../completeTheQuiz/completeTheQuiz.component";
@@ -52,7 +45,7 @@ const StartQuiz = () => {
     }
   }, []);
   return (
-    <div>
+    <div className="complete-questions">
       <CompleteTheQuiz questions={questions} />
     </div>
   );

@@ -9,7 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import { useContext, useState } from "react";
-import { GroupContext } from "../../contexts/group-context";
+import { GroupContext } from "../../contexts/group.context";
 import { QuizContext } from "../../contexts/quiz.context";
 import { db } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";

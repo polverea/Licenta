@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
-import { GroupProvider } from "./contexts/group-context";
+import { GroupProvider } from "./contexts/group.context";
 import { QuizProvider } from "./contexts/quiz.context";
 
 ReactDOM.render(

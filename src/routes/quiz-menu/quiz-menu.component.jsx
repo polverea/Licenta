@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import DeleteQuiz from "../../components/delete-quiz/deleteQuiz.component";
 import Question from "../../components/question/question.component";
 import "./quiz-menu.styles.scss";
 
@@ -31,13 +32,15 @@ const QuizMenu = () => {
         </CustomButton>
       </div>
       <div className="content">
-        {option === "New Question"
-          ? numberOfQuestions.current.map(() => {
-              return <Question />;
-            })
-          : option === "Delete Quiz"
-          ? console.log("delete quiz")
-          : console.log("default")}
+        {option === "New Question" ? (
+          numberOfQuestions.current.map(() => {
+            return <Question />;
+          })
+        ) : option === "Delete Quiz" ? (
+          <DeleteQuiz />
+        ) : (
+          console.log("default")
+        )}
       </div>
     </div>
   );
